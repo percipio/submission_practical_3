@@ -338,6 +338,9 @@ The customer is predicted to subscribe, using Pipeline model
 The customer is predicted to subscribe, using GridSearchCV model
 The customer is predicted to subscribe, using GridSearchCV model
 ```
+
+### Presentation of performance
+![alt text](<images/performance of models.png>)
 ## So, what's the outcome?
 
 Based on this exercise, the recommendations are as follows.
