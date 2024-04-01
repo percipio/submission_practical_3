@@ -21,16 +21,50 @@ Our dataset comes from the UCI Machine Learning repository [link](https://archiv
 
 To gain a better understanding of the data, please read the information provided in the UCI link above, and examine the **Materials and Methods** section of the paper.  How many marketing campaigns does this data represent?
 
-```python
-```
+The study was conducted over 2.5 years and covered 17 marketing campaigns.
 
 ### Problem 2: Read in the Data
 
 Use pandas to read in the dataset `bank-additional-full.csv` and assign to a meaningful variable name.
-There are 11 problems that walk throught the process of analyzing, cleaning, fitting, and classifying the data. What follows here is just a snippet of what is included in the Jupyter Notebook
 
-```Python
+### Imports
+
+```python
+import pandas as pd
+import plotly.graph_objects as go
+from sklearn.model_selection import GridSearchCV
+from sklearn.preprocessing import LabelEncoder
+from sklearn.model_selection import train_test_split
+from sklearn.dummy import DummyClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score
+from datetime import datetime
+
+import random
 ```
+
+Get the data
+```Python
+df = pd.read_csv('data/bank-additional-full.csv', sep = ';')
+```
+
+What does it look like?
+```Python
+df.head()
+```
+
+| age | job       | marital   | education   | default | housing | loan | contact   | month | day_of_week | ... | campaign | pdays | previous | poutcome    | emp.var.rate | cons.price.idx | cons.conf.idx | euribor3m | nr.employed | y   |
+|-----|-----------|-----------|-------------|---------|---------|------|-----------|-------|-------------|-----|----------|-------|----------|-------------|--------------|----------------|---------------|-----------|-------------|-----|
+| 56  | housemaid | married   | basic.4y    | no      | no      | no   | telephone | may   | mon         | ... | 1        | 999   | 0        | nonexistent | 1.1          | 93.994         | -36.4         | 4.857     | 5191.0      | no  |
+| 57  | services  | married   | high.school | unknown | no      | no   | telephone | may   | mon         | ... | 1        | 999   | 0        | nonexistent | 1.1          | 93.994         | -36.4         | 4.857     | 5191.0      | no  |
+| 37  | services  | married   | high.school | no      | yes     | no   | telephone | may   | mon         | ... | 1        | 999   | 0        | nonexistent | 1.1          | 93.994         | -36.4         | 4.857     | 5191.0      | no  |
+| 40  | admin.    | married   | basic.6y    | no      | no      | no   | telephone | may   | mon         | ... | 1        | 999   | 0        | nonexistent | 1.1          | 93.994         | -36.4         | 4.857     | 5191.0      | no  |
+| 56  | services  | married   | high.school | no      | no      | yes  | telephone | may   | mon         | ... | 1        | 999   | 0        | nonexistent | 1.1          | 93.994         | -36.4         | 4.857     | 5191.0      | no  |
 
 ### Problem 3: Understanding the Features
 
